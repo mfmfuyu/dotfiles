@@ -1,6 +1,15 @@
 autoload -Uz compinit && compinit
 autoload -Uz colors && colors
 
-alias ls='ls --color=auto'
+case ${OSTYPE} in
+  darwin*)
+    alias ls='ls -G'
+    ;;
+  linux*)
+    alias ls='ls --color=auto'
+    alias open='xdg-open &> /dev/null'
+    alias pbcopy='xsel --clipboard --input'
+    ;;
+esac
 
 PROMPT='%n@%m %~ %(!.#.$) '
